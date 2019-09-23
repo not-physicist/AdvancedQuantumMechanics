@@ -1,0 +1,125 @@
+\documentclass{scrartcl}
+\KOMAoptions{fontsize=12pt, paper=a4}     % Schriftgröße und Papierformat setzen
+\KOMAoptions{DIV=13}                      % Parameter mit dem man den Seitenrand ändern kann
+% \KOMAoptions{listof=totoc}				  %	Abbildungs- und 	Tabellenverzeichnisse 
+
+% Hier werden einige Pakete eingebunden
+\usepackage[utf8]{inputenc}               % Direkte Eingabe von ä usw.
+\usepackage[T1]{fontenc}                  % Font Kodierung für die Ausgabe
+\usepackage{babel}                        % Verschiedenste sprach-spezifische Extras
+\usepackage[autostyle=true]{csquotes}     % Intelligente Anführungszeichen
+\usepackage[varg]{txfonts}  			  %	Times-like fonts in support of mathematics
+\usepackage{siunitx}   	  				  % Intelligentes Setzen von Zahlen und Einheiten
+\usepackage{enumitem}				      %	extra enumerate options
+
+\renewcommand{\familydefault}{\rmdefault} % font to sans serif
+
+%import external graphics and where to find these
+\usepackage{graphicx}					  
+\graphicspath{{figs/}}
+
+% Biblographie mit Biber
+\RequirePackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{refs.bib}
+
+%hyperref. Das Paket hypcap sorgt dafür, dass Verweise auf Abbildungen besser gesetzt sind, als wenn Sie nur hyperref verwenden. 
+\usepackage{hyperref}
+\RequirePackage[all]{hypcap}
+
+%There are a number of symbols defined inside txfonts that are also defined in amsmath
+% so you can just make these available again
+\let\iint\relax
+\let\iiint\relax
+\let\iiiint\relax
+\let\idotsint\relax
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{braket}
+\usepackage{listings}  % Zum Einbinden von Programmcode verwenden wir das listings-Paket
+\usepackage{xcolor}  % Für Syntax-Highlighting:
+% Die folgenden listings-Einstellungen sind nötig, um
+% deutsche Umlaute und die Tilde (~) in listings-Umgebungen
+% verwenden zu können.
+\lstset{basicstyle=\ttfamily,    
+		literate={~} {$\sim$}{1} % set tilde as a literal
+		{ö}{{\"o}}1
+		{ä}{{\"a}}1
+		{ü}{{\"u}}1
+		{ß}{{\ss}}1
+		{Ö}{{\"O}}1
+		{Ä}{{\"A}}1
+		{Ü}{{\"U}}1
+}
+% Some styles for code blocks
+\definecolor{codebg}{HTML}{EEEEEE}
+\definecolor{codeframe}{HTML}{CCCCCC}
+\definecolor{gree}{HTML}{1bb703}
+\lstset{% Keine besondere Markierung für Leerzeichen in Codes
+		showspaces=false,               
+		showstringspaces=false,         
+		% Farebn für Code-Kommentare und Schlüsselworte:
+		commentstyle=\color{red},       % comment style
+		keywordstyle=\color{blue},      % keyword style
+		backgroundcolor=\color{codebg},
+		rulecolor=\color{codeframe},
+		showtabs=false,
+		tabsize=4,
+		numbers=left,
+		numbersep=15pt,
+		frame=single,
+		framesep=10pt,
+		stringstyle=\color{gree},
+		basicstyle=\footnotesize,
+		breakatwhitespace=false,
+}
+
+% This will set fancy headings to the top of the page. The page number will be
+% accompanied by the total number of pages. That way, you will know if any page
+% is missing.
+% If you do not want this for your document, you can just use
+% ``\pagestyle{plain}``.
+\usepackage{scrpage2}
+\usepackage{lastpage}
+\pagestyle{scrheadings}
+\automark{section}
+\cfoot{\footnotesize{Seite \thepage\ / \pageref*{LastPage}}}
+\chead{}
+\ihead{}
+\ohead{\rightmark}
+\setheadsepline{.4pt}
+
+%symbols for footnotes
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% {figure}[H]
+\usepackage{here}
+
+% toprule and etc.
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% NEW COMMAND SECTION %%%%%%%%%%%%%%%%%%%%
+%define equal
+\newcommand{\defeq}{\vcentcolon =} 
+\newcommand{\eqdef}{= \vcentcolon}
+\newcommand{\euler}{\mathrm{e}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% OPTIONAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Using the package makecell to force a line break inside a table cell
+%\usepackage{makecell}
+
+%set the line spacing
+%\renewcommand{\baselinestretch}{1} 
+
+%section number to roman numbers
+%\renewcommand\thesection{\Roman{section}}
+
+%Exclude figures
+%\usepackage{comment}
+%\excludecomment{figure}
+%\let\endfigure\relax
+
+%Centering style for section titles
+%\usepackage{sectsty}
+%\allsectionsfont{\centering}

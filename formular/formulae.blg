@@ -1,0 +1,9 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'formulae.blg'
+[21] biber:315> INFO - === Sat Feb  2, 2019, 11:34:13
+[40] Biber.pm:371> INFO - Reading 'formulae.bcf'
+[93] Biber.pm:889> INFO - Found 0 citekeys in bib section 0
+[97] Utils.pm:193> WARN - The file 'formulae.bcf' does not contain any citations!
+[103] bbl.pm:636> INFO - Writing 'formulae.bbl' with encoding 'UTF-8'
+[103] bbl.pm:739> INFO - Output to formulae.bbl
+[103] Biber.pm:110> INFO - WARNINGS: 1

@@ -1,0 +1,339 @@
+\input{./header.tex}
+
+\author{Chenhuan Wang}
+\title{Important formulae in the AQT course}
+\date{\today}
+\numberwithin{equation}{section}
+\begin{document}
+\maketitle
+\section{General maths and old stuff}
+\paragraph{transformation function}
+\begin{align}
+	\braket{\pmb{x}'| \pmb{p}'} = \left[\frac{1}{(2\pi\hbar)^{3/2}}\right]\exp(\frac{i\pmb{p}'\cdot\pmb{x}'}{\hbar})
+\end{align}
+\paragraph{trigonometric identities}
+\begin{align}
+	\begin{split}
+		\sin{(\alpha \pm \beta)} &= \sin{\alpha}\cos{\beta} \pm \cos{\alpha}\sin{\beta}\\
+		\cos{(\alpha \pm \beta)} &= \cos{\alpha}\cos{\beta} \mp \sin{\alpha}\sin{\beta}
+	\end{split}
+\end{align}
+\paragraph{Gradient in spherical coordinates}
+\begin{align}
+	\nabla f(r, \theta, \varphi) = \frac{\partial f}{\partial r}\mathbf{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{1}{r \sin\theta}\frac{\partial f}{\partial \varphi}\mathbf{e}_\varphi
+\end{align}
+\paragraph{Laplace operator in spherical coordinates}
+\begin{align}
+	\begin{split}
+	\Delta &= \frac{1}{r^2}\frac{\partial}{\partial r} \left( r^2 \frac{\partial}{\partial r} \right) + \frac{1}{r^2 \sin(\theta)}\frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial}{\partial \theta} \right) + \frac{1}{r^2 \sin^2(\theta)}\frac{\partial^2}{\partial \varphi^2} \\
+		&= 
+	\frac{1}{r}\frac{\partial^2}{\partial r^2}r + \frac{1}{r^2 \sin(\theta)}\frac{\partial}{\partial \theta} \left( \sin(\theta) \frac{\partial}{\partial \theta} \right) + \frac{1}{r^2 \sin^2(\theta)}\frac{\partial^2}{\partial \varphi^2}
+\end{split}
+\end{align}
+\paragraph{Commutator identities}
+\begin{align}
+	[A, BC] &= [A, B]C + B[A, C] \\
+	[AB, C] &= A[B, C] + [A, C]B
+\end{align}
+\paragraph{Canonical commutation relation}
+\begin{align}
+	[\hat{r}_i, \hat{p}_j] = i\hbar\delta_{ij}
+\end{align}
+\paragraph{Green's first identity}
+\begin{align}
+	\int_V \left(\phi\Delta \psi + \vec{\nabla}\phi \cdot \vec{\nabla}\psi \right) \dd V = \int_{\partial V} \phi \left( \vec{\nabla}\psi \cdot \hat{n} \right) \dd S
+\end{align}
+\paragraph{Green's second identity}
+\begin{align}
+	\int_V \left( \phi\Delta\psi - \psi\Delta\phi \right) \dd V = \int_{\partial V} \left( \phi\frac{\partial \psi}{\partial \vec{n}} - \psi \frac{\partial \phi}{\partial \vec{n}} \right) \dd S
+\end{align}
+with $\frac{\partial \phi}{\partial \vec{n}} = \vec{\nabla}\phi \cdot \vec{n}$
+\paragraph{Representations of Dirac delta function $\delta(x)$}
+\begin{itemize}
+	\item gaussian functions $$\lim_{\epsilon \rightarrow 0}\sqrt{\frac{1}{\pi \epsilon}}e^{-x^2/\epsilon}$$
+	\item fourier tranform $$\delta^{(3)}(\vec{x})=\frac{1}{(2\pi)^3}\int_{-\infty}^{\infty}e^{i\vec{k}\cdot\vec{x}}\dd^3 k$$
+	\item poisson kernel $$\lim_{\eta \rightarrow 0} \frac{1}{\pi}\frac{1}{x^2 + \eta^2}$$
+\end{itemize}
+\paragraph{Composition of delta function with a function}
+\begin{align}
+	\int^{\infty}_{-\infty} f(x)\delta(g(x)) = \sum_i \frac{f(x_i)}{|g'(x_i)|}
+\end{align}
+\paragraph{Saddle point approximation/Stationary phase methode/saddle-point methode}
+\paragraph{three pictures of QM}
+For a time-independent Hamiltonian $H_S$:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		\toprule
+		evolution & \multicolumn{3}{c}{Picture} \\
+		of & Heisenberg & Interaction & Schrödinger \\
+		\midrule
+		Ket state & constant & $\ket{\psi_I(t)}=\euler^{iH_{0,S}t/\hbar}\ket{\psi_S (t)}$ & $\ket{\psi_S(t)}=\euler^{-iH_St/\hbar}\ket{\psi_S(0)}$ \\
+		Observable & $A_H(t) = \euler^{iH_S t/ \hbar}A_S \euler^{-iH_S t / \hbar}$ & $ A_I(t) = \euler^{iH_{0,S}t/\hbar}A_S\euler^{-iH_{0,S}t/\hbar}$ & constant \\
+		Density matrix & constant & $\rho_I (t)=e^{i H_{0, S} ~t / \hbar}  \rho_S (t) e^{-i H_{0, S}~ t / \hbar}$ & $\rho_S (t)=  e^{-i H_{ S} ~t / \hbar} \rho_S(0) e^{i H_{ S}~ t / \hbar}$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{three pictures of QM}
+\end{table}
+\section{Scattering}
+\paragraph{Lippmann-Schwinger equation} with $\ket{\varphi}$ the incident wave $\ket{\psi^{(\pm)}}$ the scattered wave
+\begin{equation}
+	\ket{\psi^{(\pm)}}  = \ket{\varphi} + \frac{V}{E-H_0 \pm i \epsilon}\ket{\psi^{(\pm)}}
+\end{equation}
+
+\paragraph{Born series}
+comes from iterating the Lippmann-Schwinger equation
+\begin{align}
+	\begin{split}
+	\ket{\psi} &= \ket{\phi} + G_0(E)V\ket{\phi} + [G_0(E)V]^2\ket{\phi} + \dots \\
+			   &\text{with} \; G_0(E) = \frac{1}{E_i - H_0 \pm i\varepsilon}
+	\end{split}
+\end{align}
+transition (rate) matrix:
+\begin{align}
+	T = V + VG_0(E)V + VG_0(E)VG_0(E)V + \dots	
+\end{align}
+\paragraph{Scattering amplitude} $f(\pmb{k},\pmb{k'})$ \\
+(has dimension of length)
+\begin{align}
+	\begin{split}
+		\braket{\pmb{x} | \psi^{(+)}} & = \braket{x | i} - \frac{2m}{\hbar^2}\int\dd^3 x' \underbrace{\frac{e^{\pm ik|\pmb{x}-\pmb{x}'|}}{4\pi |\pmb{x}-\pmb{x}'|}}_{G_{\pm}(\pmb{x}, \pmb{x}')}V(\pmb{x}')\braket{\pmb{x}' | \psi^{(\pm)}} \\
+								  &\xrightarrow[\text{large }r]{} \frac{1}{L^{3/2}} \left[ e^{i \pmb{k} \cdot \pmb{x}} + \frac{e^{ikr}}{r} f(\pmb{k}, \pmb{k'}) \right] \\
+								  &\text{with}\;	f(\pmb{k}', \pmb{k}) = -\frac{mL^3}{2\pi\hbar^2} \mel**{\pmb{k}'}{V}{\psi^{(+)}} = - \frac{mL^3}{2 \pi \hbar^2} \matrixel**{\pmb{k}'}{T}{\pmb{k}}
+\end{split}
+\end{align}
+\paragraph{Differential cross section}
+\begin{equation}
+	\frac{\dd \sigma}{\dd \Omega} = |f(\pmb{k}', \pmb{k})|^2
+\end{equation}
+
+\paragraph{Optical theorem}
+\begin{equation}
+	\Im f(\theta=0) = \frac{k \sigma_{tot}}{4\pi}
+\end{equation}
+
+\paragraph{Residue Theorem} with the $\operatorname{I}(\gamma, a_k)$ the winding number:
+\begin{equation}
+\oint_\gamma f(z)\, dz = 2\pi i \sum_{k=1}^n \operatorname{I}(\gamma, a_k) \operatorname{Res}( f, a_k )
+\end{equation}
+\paragraph{Calculating the residues}
+\begin{itemize}
+\item Simple poles
+	\begin{equation}
+		\operatorname{Res}(f,c)=\lim_{z\to c}(z-c)f(z)
+	\end{equation}
+\item Limit formula for higher order poles
+	\begin{equation}
+		\operatorname{Res}(f,c) = \frac{1}{(n-1)!} \lim_{z \to c} \frac{d^{n-1}}{dz^{n-1}} \left( (z-c)^n f(z) \right)
+	\end{equation}
+\end{itemize}
+\paragraph{Jordan's Lemma}
+This lemma states the convergence condition of integral containing $f(z) = g(z) e^{iaz}$ with $z \in C_R,\, a>0$ over an arc in complex plane. $C_R$ is the upper half-plane, i.e. $C_R = \{ R e^{i\theta} | \,\theta \in [0, \pi] \}$. Then the upper bound of the the integral is:
+\begin{align}
+	\left| \int_{C_R} f(z) \dd z \right| \leq \frac{\pi}{a}M_R \;\text{where}\; M_R \defeq \max_{\theta \in [0,\pi]} \left| g \left(R e^{i \theta}\right) \right|
+\end{align}
+
+An analogous statement for a semicircular contour in the lower half-plane holds when $a < 0$.
+
+\paragraph{Born Approximation} applicable when the scattered field is small compared to incident fielf of scatterer
+\begin{align}
+	f^{(1)}(\pmb{k}',\pmb{k}) &=  - \frac{m}{2\pi\hbar^2}\braket{\pmb{k}' | V | \pmb{k}} = - \frac{m}{2\pi\hbar^2}\int \dd^3 x' e^{i(\pmb{k}-\pmb{k}')\cdot \pmb{x}'} V(\pmb{x}') \quad \propto V(\pmb{k}'- \pmb{k}) \\
+	f^{(2)} &= - \frac{m}{2\pi\hbar^2} \braket{ \pmb{k}' | V G_0(E) V | \pmb{k}} 
+\end{align}
+
+\paragraph{Eikonal Approximation} applicable when the potential $V(\pmb{x})$ varies very little over a distance of order of wavelength $\lambda$
+
+\begin{align}
+\begin{split}
+	f(\pmb{k}', \pmb{k}) &= -ik \int^{\infty}_0 \dd b b J_0(kb \theta)[e^{2i\Delta(b)}-1] \\
+	\Delta(b) &= \frac{-m}{2k\hbar^2}\int^{+\infty}_{-\infty} \dd z V(\sqrt{b^2+z^2})
+\end{split}
+\end{align}
+\paragraph{(Spherical) Bessel functions}
+\begin{align}
+	j_l (x) &= (-x)^l \left( \frac{1}{x}\frac{\dd}{\dd x} \right)^l \frac{\sin(x)}{x} \\
+	y_l (x) &= -(-x)^l \left( \frac{1}{x}\frac{\dd}{\dd x} \right)^l \frac{\cos(x)}{x} \\
+	J_{l+1/2}(x) &= \sqrt{\frac{2x}{\pi}}j_l(x)
+\end{align}
+with
+\begin{align*}
+	j_{0} = \frac{\sin{x}}{x} \; &; \; y_{0} = -\frac{\cos{x}}{x}\\
+	j_{1} = \frac{\sin{x}}{x^2}-\frac{\cos{x}}{x} \; &; \; y_{1} = -\frac{\cos{x}}{x^2} - \frac{\sin{x}}{x} \\
+	(j, J)_0(x) \rightarrow 1 \;&\text{in}\; x \rightarrow 0 \\
+	(j, J)_{1,2}(x) \rightarrow 0 \;&\text{in}\; x \rightarrow 0
+\end{align*}
+For $z \rightarrow 0$
+\begin{align}
+	j_l(z) \approx \frac{z^l}{(2l+1)!!} \quad \; \quad y_l(z) \approx -\frac{(2l-1)!!}{z^{l+1}}
+\end{align}
+For $z \rightarrow \infty$
+\begin{align}
+	j_l(z) \approx \frac{\sin(z-l\pi/2)}{z} \quad \; \quad y_l(z) \approx -\frac{\cos(z-l\pi/2)}{z}
+\end{align}
+\paragraph{Spherical waves}
+The radial part of solution of free Schrödinger equation:
+\begin{align}
+	R_{kl}^{\pm} = \pm iA\sqrt{\frac{k\pi}{2r}} H_{l+1/2}^{(1,2)}(kr)
+\end{align}
+plane wave expansion
+\begin{align}
+	e^{i\vec{k}\cdot\vec{r}} = 4\pi \sum_{l=0}^\infty \sum_{m=-l}^{l} Y^{m*}_l (\theta_k, \phi_k) j_l(kr) Y_l^m (\theta,\phi)
+\end{align}
+\paragraph{Legendre polynomials}
+\begin{align}
+	P_l(x) = \frac{1}{2^l l!}\frac{\dd^l}{\dd x^l} \left[ (x^2 - 1)^l \right]
+\end{align}
+with properties
+\begin{itemize}
+	\item $\int^1_{-1}\dd x P_l(x) P_{l'}(x) = \frac{2}{2l+1}\delta_{ll'}$
+	\item $P_l(-x) = (-1)^l P_l(x)$
+	\item $P_l(1)=1$
+	\item $P_0{x} = 1$, $P_1(x) = x$, $P_2(x) = \frac{1}{2}(3x^2-1)$
+\end{itemize}
+\paragraph{Partial-wave Expansion of the scattering amplitude} \hspace{0pt} \\
+For central potential the scattering amplitude only depends on the momentum $k$ und the scattering angle $\theta$:
+\begin{align}
+	f_k(\theta) &= \frac{1}{k} \sum_{l=0}^\infty (2l+1) e^{i \delta_l (k)} \sin{[\delta_l(k)]} P_l (\cos(\theta)) \\
+	\sigma_{tot} &= \frac{4\pi}{k^2}\sum_l (2l+1)\sin^2{\delta_l}
+\end{align}
+\paragraph{Determination of phase shift}
+\begin{align}
+	\braket{x | \psi^{(+)}} &= \frac{1}{(2\pi)^{3/2}} \sum i^l (2l+1) A_l(r) P_l(\cos{\theta}) \; r>R \\
+	A_l(r) &= e^{i\delta_l} \left[ \cos{\delta_l} j_l(kr) - \sin{\delta_l}n_l(kr) \right] \; r>R\\
+	\tan{\delta_l} &= \frac{kRj_l'(kR) - \beta_l j_l(kR)}{kRn'_l(kR) - \beta_l n_l(kR)}
+\end{align}
+
+\paragraph{Breit-Wigner-Equation}
+\begin{align}
+\sigma_l = \underbrace{\frac{4\pi(2l+1)}{k^2}}_{\sigma_{max}} \frac{\gamma_l^2 (kR)^{4l+2}}{1+\gamma_l^2(kR)^{4l+2}}
+\end{align}
+\section{Relativistic quantum mechanics}
+\paragraph{Minkowski metric}
+$$(+,-,-,-)$$
+\paragraph{Klein-Gordon equation}
+\begin{align}
+	(\Box + m^2)\phi = 0
+\end{align}
+four-current and continuity equation
+\begin{align}
+	j^\mu &\defeq \frac{i}{2m} \left[ \phi^*(\partial^\mu \phi) - (\partial^\mu \phi^*)\phi \right] \\
+	\partial_\mu j^\mu &= 0 
+\end{align}
+
+\paragraph{Dirac equation}
+\begin{align}
+	i\hbar\frac{\partial}{\partial t}\Psi(x^\mu) = \left( c \vec{\alpha}\cdot\vec{p} + \beta m c^2 \right)\Psi(x^\mu)  \\
+	\text{with}\; \alpha^i = \begin{pmatrix} 0 & \sigma^i \\ \sigma^i & 0 \end{pmatrix} \; \text{and} \; \beta = \begin{pmatrix} \mathbf{1} & 0 \\ 0 & -\mathbf{1}\end{pmatrix}
+\end{align}
+covariant form:
+\begin{align}
+	i\hbar \gamma^\mu \partial_\mu \Psi(x^\mu) = mc\Psi(x^\mu) \\
+	\text{with}\; \gamma^0 = \beta, \; \gamma^i = \beta \alpha^i, \\
+	\{\alpha^i, \alpha^j\} = 2 \delta^{ij}\mathbf{1} \; ,\; \{\alpha^i, \beta\} = 0 \\
+	\{\gamma^\mu, \gamma^\nu \} = 2 g^{\mu \nu} \mathbf{1}
+\end{align}
+dirac density and dirac current density;
+\begin{align}
+	\rho &= \Psi^\dagger\Psi \\
+	\vec{j} &= \Psi^\dagger (c\vec{\alpha}) \Psi = \pm \rho \vec{v} = \pm \rho \frac{c^2 \vec{p}}{E}
+\end{align}
+or with $\bar{\Psi} = \Psi^\dagger \gamma^0$
+\begin{align}
+	\partial_\mu (\bar{\Psi} \gamma^\mu \Psi) = 0
+\end{align}
+transformation of spinor:
+\begin{align}
+	S^{-1} \gamma^\mu S = \Lambda^\mu_{\;\nu}\gamma^\nu
+\end{align}
+free particle solution:
+\begin{align}
+	\Psi = \exp{i(\vec{p}\cdot\vec{r} - E_p t)/\hbar} U(\varepsilon, \vec{p})
+\end{align}
+\begin{align}
+	\begin{split}
+	U_{p \uparrow}^{+} = \sqrt{\frac{E_p + mc^2}{2mc^2}} \begin{pmatrix} 1 \\ 0 \\ \frac{cp_z}{E_p + mc^2} \\ \frac{c(p_x + ip_y)}{E_p + mc^2}\end{pmatrix}	\quad
+	U_{p \downarrow}^{+} = \sqrt{\frac{E_p + mc^2}{2mc^2}} \begin{pmatrix}  0 \\ 1 \\ \frac{c(p_x - ip_y)}{E_p + mc^2}\\  \frac{-cp_z}{E_p + mc^2}\end{pmatrix}	\\
+	U_{p \uparrow}^{-} = \sqrt{\frac{E_p + mc^2}{2mc^2}} \begin{pmatrix} \frac{cp_z}{E_p + mc^2} \\ \frac{c(p_x + ip_y)}{E_p + mc^2} \\ 1 \\ 0 \end{pmatrix}	\quad
+	U_{p \downarrow}^{-} = \sqrt{\frac{E_p + mc^2}{2mc^2}} \begin{pmatrix}  \frac{c(p_x - ip_y)}{E_p + mc^2}\\  \frac{-cp_z}{E_p + mc^2} \\ 0 \\ 1 \end{pmatrix}	\\
+	\end{split}
+\end{align}
+Parity operator:
+\begin{align}
+	\hat{P}_S \defeq \beta \hat{P}
+\end{align}
+\paragraph{Pauli matrices}
+\begin{align}
+	\sigma_a &= 
+    \begin{pmatrix}
+      \delta_{a3}                &  \delta_{a1} - i\delta_{a2}\\
+      \delta_{a1} + i\delta_{a2} & -\delta_{a3}
+    \end{pmatrix} \\
+	\sigma_i \sigma_j &= \delta_{ij}\mathbf{1} + i \epsilon_{ijk}\sigma_k \\
+	(\vec{a} \cdot \vec{\sigma})(\vec{b} \cdot \vec{\sigma}) &= (\vec{a} \cdot \vec{b}) \, \mathbf{1} + i ( \vec{a} \times \vec{b} )\cdot \vec{\sigma} \\
+	[ \sigma_a, \sigma_b ] &= 2 i \epsilon_{abc}\sigma_c \\
+	\{\sigma_a, \sigma_b\} &= 2\delta_{ab}\mathbf{1} \\
+\end{align}
+
+\section{Second Quantization}
+\paragraph{Symmetrization/Antisymmetrization of many-particle states}
+\begin{align}
+	\mathcal{P}_{(B,F)} \psi(\vec{r}_1, \dots, \vec{r}_N) = \frac{1}{N!}\sum_P \xi^P \psi(\vec{r}_{P1}, \dots, \vec{r}_{PN})
+\end{align}
+with $\xi = +1$ for bosons or $-1$ for fermions.
+
+\paragraph{creation and annihilation operator}
+For bosons:
+\begin{align}
+	\hat{a}_i^\dagger \ket{\dots, n_i, \dots} &= \sqrt{n_i + 1} \ket{\dots, n_i+1, \dots} \\
+	\hat{a}_i \ket{\dots, n_i, \dots} &= \sqrt{n_i} \ket{\dots, n_i-1,\dots}\\
+	[\hat{a}_i, \hat{a}_j^\dagger] &= \delta_{ij} \\
+	n_i &= \hat{a}_i^\dagger \hat{a}_i
+\end{align}
+For fermions the commutators are replaced by anticommutator.
+
+\paragraph{Hamiltonian for bosons}
+\begin{align}
+	\hat{H} = \sum_{i,j}t_{ij}\hat{a}^\dagger_i \hat{a}_j + \frac{1}{2} \sum_{i,j,k,l}V_{ijkl}\hat{a}^\dagger_i \hat{a}^\dagger_j \hat{a}_k \hat{a}_l	
+\end{align}
+
+\paragraph{Field operators}
+\begin{align}
+	\hat{\psi}^\dagger(\vec{x}) &= \sum_\alpha \braket{\alpha | \vec{x}} \hat{a}^\dagger_\alpha = \sum_\alpha \phi^*_\alpha(\vec{x})\hat{a}^\dagger_\alpha \\	
+	\hat{\psi}(\vec{x}) &= \sum_\alpha \braket{ \vec{x}| \alpha } \hat{a}_\alpha = \sum_\alpha \phi_\alpha(\vec{x})\hat{a}_\alpha
+\end{align}
+For bosons and fermions:
+\begin{align}
+	[\psi(\vec{x}), \psi^\dagger(\vec{x}\,')] &= \delta^{(3)}(\vec{x}-\vec{x}\,') \\
+	\{\psi(\vec{x}), \psi^\dagger(\vec{x}\,')\} &= \delta^{(3)}(\vec{x}-\vec{x}\,') 
+\end{align}
+Hamiltonian
+\begin{align}
+	\hat{H} &= \int\dd^3x \left[ \vec{\nabla} \hat{\psi}^\dagger(\vec{x})\frac{\hbar^2}{2m}\vec{\nabla}\hat{\psi}(\vec{x}) + V(\vec{x})\hat{\psi}^\dagger(\vec{x})\hat{\psi}(\vec{x}) \right] \\
+	&+ \frac{1}{2} \int\dd^3x \int\dd^3x' \hat{\psi}^\dagger(\vec{x})\hat{\psi}^\dagger(\vec{x}\,') U(\vec{x}-\vec{x}\,') \hat{\psi}(\vec{x})\,' \hat{\psi}(\vec{x})
+\end{align}
+
+\paragraph{Bosonic coherent states}
+\begin{align}
+	\hat{a}_{\alpha_i} \ket{\phi} &= \phi_{\alpha_i} \ket{\phi} \\
+	\ket{\phi} &= \sum_{n_{\alpha_1},  n_{\alpha_2}, \dots} \phi_{n_{\alpha_1}, n_{\alpha_2}, \dots} \ket{n_{\alpha_1} \, n_{\alpha_2}, \dots} \\
+	\ket{n_{\alpha_1} \, n_{\alpha_2}, \dots} &= \frac{(\hat{a}_{\alpha_1}^\dagger)^{n_{\alpha_1}}}{\sqrt{n_{\alpha_1}!}} \frac{(\hat{a}_{\alpha_2}^\dagger)^{n_{\alpha_2}}}{\sqrt{n_{\alpha_2}!}} \dots \ket{0} \\
+	\ket{\phi} &= \exp(\sum_{\alpha_i}\phi^*_{\alpha_i} \hat{a}_{\alpha_i}^\dagger) \ket{0} \\
+	\hat{a}^\dagger_{\alpha_i} \ket{\phi} &= \frac{\partial}{\partial \phi_{\alpha_i}} \ket{\phi} \\
+	\braket{\phi | \phi '} &= \exp(\sum_{\alpha_i}\phi_{\alpha_i}^* \phi_{\alpha_i}')
+\end{align}
+
+\paragraph{Fermionic coherent states}
+with grassman variable $\xi$
+\begin{align}
+	\{\xi, \hat{c}\} &= \{\xi^*, \hat{c}^\dagger\} = \{\xi^*, \hat{c}\} = \{\xi, \hat{c}^\dagger\} = 0 \\
+	\ket{\xi} &= \exp(-\sum_\alpha \xi_\alpha \hat{c}_\alpha^\dagger) \ket{0}
+\end{align}
+
+\section{Path integral}
+\paragraph{time evolution of wave function}
+\begin{align}
+	\psi(x_f,t_f) &= \int \dd x_i U(x_f,t_f,x_i,0) \, \psi(x_i, 0) \\
+	U(x_f, t_f, x_i, 0) &= \mathcal{N} \int \mathcal{D}[x(t)] e^{\frac{i}{\hbar}S[x(t)]}
+\end{align}
+with $S[x(t)] = \int^{t_f}_0 \dd t \mathcal{L}(x(t), \dot{x}(t))$
+\end{document}
